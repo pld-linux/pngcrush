@@ -33,14 +33,14 @@ Graphics). Ele pode comprimir os arquivos em até 40%, sem perdas.
 %setup -q
 
 # workaround for Makefile and #include "png.h"
-echo '#include <png.h>' > png.h
+#echo '#include <png.h>' > png.h
 
 %build
 %{__make} -f Makefile.gcc \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -Wall" \
-	OBJS="pngcrush.o" \
-	LDFLAGS="%{rpmldflags} -lpng -lz"
+#	OBJS="pngcrush.o" \
+#	LDFLAGS="%{rpmldflags} -lpng -lz"
 
 # create some real documentation
 head -n 24 pngcrush.c | cut -b 4- > README
