@@ -2,12 +2,14 @@ Summary:	Optimizer for png files
 Summary(pl):	Optymalizator plików png
 Summary(pt_BR):	Utilitário para compressão de pngs
 Name:		pngcrush
-Version:	1.5.8
+Version:	1.5.9
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
-Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.bz2
 URL:		http://pmt.sf.net/pngcrush/
+BuildRequires:	libpng-devel
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -19,7 +21,9 @@ it turns out to be the best.
 
 %description -l pl
 Ten program wczytuje obrazek PNG i zapisuje go ponownie z optymalnymi
-parametrami filter_method i zlib_level. U¿ywa metody brute force.
+parametrami filter_method i zlib_level. U¿ywa metody brute force
+(próbuje filter_method none oraz adaptacyjnego filtrowania libpng ze
+stopniami kompresji 3 i 9).
 
 %description -l pt_BR
 O pngcrush é um otimizador para arquivos PNG (Portable Network
@@ -28,13 +32,20 @@ Graphics). Ele pode comprimir os arquivos em até 40%, sem perdas.
 %prep
 %setup -q
 
+# workaround for Makefile and #include "png.h"
+echo '#include <png.h>' > png.h
+
 %build
-%{__make} -f Makefile.gcc CC="%{__cc}" CFLAGS="%{rpmcflags}"
+%{__make} -f Makefile.gcc \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags} -Wall" \
+	OBJS="pngcrush.o" \
+	LDFLAGS="%{rpmldflags} -lpng -lz"
 
 # create some real documentation
 head -n 24 pngcrush.c | cut -b 4- > README
-head -n 361 pngcrush.c | tail -n 294 | cut -b 4- > CHANGELOG
-head -n 398 pngcrush.c | tail -n 35 | cut -b 4- > TODO
+head -n 372 pngcrush.c | tail -n 305 | cut -b 4- > CHANGELOG
+head -n 409 pngcrush.c | tail -n 35 | cut -b 4- > TODO
 
 %install
 rm -rf $RPM_BUILD_ROOT
