@@ -6,7 +6,7 @@ Version:	1.5.8
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
-Source0:	http://prdownloads.sourceforge.net/pmt/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.gz
 URL:		http://pmt.sf.net/pngcrush/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -41,7 +41,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_bindir}
 
 install pngcrush $RPM_BUILD_ROOT%{_bindir}
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
