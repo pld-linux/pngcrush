@@ -13,7 +13,7 @@ License:	GPL
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.bz2
 URL:		http://pmt.sf.net/pngcrush/
-%if 0%{?_with_systemlibs}
+%if 0%{?_with_systemlibs:1}
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
 %endif
@@ -39,7 +39,7 @@ Graphics). Ele pode comprimir os arquivos em até 40%, sem perdas.
 %prep
 %setup -q
 
-%if 0%{?_with_systemlibs}
+%if 0%{?_with_systemlibs:1}
 # workaround for Makefile and #include "png.h"
 echo '#include <png.h>' > png.h
 %endif
@@ -48,12 +48,13 @@ echo '#include <png.h>' > png.h
 %{__make} -f Makefile.gcc \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -Wall" \
-%if 0%{?_with_systemlibs}
+%if 0%{?_with_systemlibs:1}
 	OBJS="pngcrush.o" \
 	LDFLAGS="%{rpmldflags} -lpng -lz"
 %endif
 
 # create some real documentation
+# NOTE: remember to update line numbers on upgrade!
 head -n 24 pngcrush.c | cut -b 4- > README
 head -n 378 pngcrush.c | tail -n 310 | cut -b 4- > CHANGELOG
 head -n 415 pngcrush.c | tail -n 35 | cut -b 4- > TODO
