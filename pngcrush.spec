@@ -42,7 +42,6 @@ install -d $RPM_BUILD_ROOT%{_bindir}
 
 install pngcrush $RPM_BUILD_ROOT%{_bindir}
 
-gzip -9nf README CHANGELOG TODO README.txt
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -50,4 +49,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
-%doc *.gz
+%doc README CHANGELOG TODO README.txt
