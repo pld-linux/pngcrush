@@ -12,6 +12,7 @@ Release:	1
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.bz2
+# Source0-md5:	a659cc4d9f7cf57bbc979193a054704f
 URL:		http://pmt.sf.net/pngcrush/
 %if 0%{?_with_systemlibs:1}
 BuildRequires:	libpng-devel
