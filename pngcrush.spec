@@ -1,13 +1,26 @@
 Summary:	Optimizer for png files
 Summary(pl):	Optymalizator plikÛw png
+Summary(pt_BR):	Utilit·rio para compress„o de pngs
 Name:		pngcrush
 Version:	1.5.8
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
-Group(de):	Applikationen/Grafik
+Group(cs):	Aplikace/Grafika
+Group(da):	Programmer/Grafik
+Group(de):	Applikationen/Graphiken
+Group(es):	Aplicaciones/Gr·ficos
+Group(fr):	Applications/Graphiques
+Group(id):	Aplikasi/Grafik
+Group(is):	Forrit/Myndvinnsla
+Group(it):	Applicazioni/Immagini
+Group(ja):	•¢•◊•Í•±°º•∑•Á•Û/•∞•È•’•£•√•Ø•π
+Group(no):	Applikasjoner/Grafikk
 Group(pl):	Aplikacje/Grafika
 Group(pt):	AplicaÁıes/Gr·ficos
+Group(ru):	“…Ãœ÷≈Œ…—/Á“¡∆…À¡
+Group(sl):	Programi/Grafika
+Group(sv):	Till‰mpningar/Grafik
 Source0:	http://prdownloads.sourceforge.net/pmt/%{name}-%{version}.tar.gz
 URL:		http://pmt.sf.net/pngcrush/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -22,6 +35,10 @@ it turns out to be the best.
 %description -l pl
 Ten program wczytuje obrazek PNG i zapisuje go ponownie z optymalnymi
 parametrami filter_method i zlib_level. Uøywa metody brute force.
+
+%description -l pt_BR
+O pngcrush È um otimizador para arquivos PNG (Portable Network
+Graphics). Ele pode comprimir os arquivos em atÈ 40%, sem perdas.
 
 %prep
 %setup -q
