@@ -6,21 +6,6 @@ Version:	1.5.8
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
-Group(cs):	Aplikace/Grafika
-Group(da):	Programmer/Grafik
-Group(de):	Applikationen/Graphiken
-Group(es):	Aplicaciones/Gr·ficos
-Group(fr):	Applications/Graphiques
-Group(id):	Aplikasi/Grafik
-Group(is):	Forrit/Myndvinnsla
-Group(it):	Applicazioni/Immagini
-Group(ja):	•¢•◊•Í•±°º•∑•Á•Û/•∞•È•’•£•√•Ø•π
-Group(no):	Applikasjoner/Grafikk
-Group(pl):	Aplikacje/Grafika
-Group(pt):	AplicaÁıes/Gr·ficos
-Group(ru):	“…Ãœ÷≈Œ…—/Á“¡∆…À¡
-Group(sl):	Programi/Grafika
-Group(sv):	Till‰mpningar/Grafik
 Source0:	http://prdownloads.sourceforge.net/pmt/%{name}-%{version}.tar.gz
 URL:		http://pmt.sf.net/pngcrush/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
