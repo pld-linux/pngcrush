@@ -1,22 +1,16 @@
-#
-# Conditional build:
-# _with_systemlibs	- use system libraries instead of modified ones
-#                         (modified can give little better results)
-#
 Summary:	Optimizer for png files
 Summary(pl):	Optymalizator plików png
 Summary(pt_BR):	Utilitário para compressão de pngs
 Name:		pngcrush
-Version:	1.5.9
+Version:	1.5.10
 Release:	1
 License:	GPL
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.bz2
+Patch0:		%{name}-system-libs.patch
 URL:		http://pmt.sf.net/pngcrush/
-%if 0%{?_with_systemlibs}
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
-%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -38,20 +32,12 @@ Graphics). Ele pode comprimir os arquivos em até 40%, sem perdas.
 
 %prep
 %setup -q
-
-%if 0%{?_with_systemlibs}
-# workaround for Makefile and #include "png.h"
-echo '#include <png.h>' > png.h
-%endif
+%patch -p1
 
 %build
 %{__make} -f Makefile.gcc \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -Wall" \
-%if 0%{?_with_systemlibs}
-	OBJS="pngcrush.o" \
-	LDFLAGS="%{rpmldflags} -lpng -lz"
-%endif
 
 # create some real documentation
 head -n 24 pngcrush.c | cut -b 4- > README
@@ -69,5 +55,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*
 %doc README CHANGELOG TODO README.txt
+%attr(755,root,root) %{_bindir}/*
