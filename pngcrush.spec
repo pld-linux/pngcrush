@@ -1,3 +1,8 @@
+#
+# Conditional build:
+# _with_systemlibs	- use system libraries instead of modified ones
+#                         (modified can give little better results)
+#
 Summary:	Optimizer for png files
 Summary(pl):	Optymalizator plików png
 Summary(pt_BR):	Utilitário para compressão de pngs
@@ -8,8 +13,10 @@ License:	GPL
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.bz2
 URL:		http://pmt.sf.net/pngcrush/
+%if 0%{?_with_systemlibs}
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
+%endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -32,15 +39,19 @@ Graphics). Ele pode comprimir os arquivos em até 40%, sem perdas.
 %prep
 %setup -q
 
+%if 0%{?_with_systemlibs}
 # workaround for Makefile and #include "png.h"
-#echo '#include <png.h>' > png.h
+echo '#include <png.h>' > png.h
+%endif
 
 %build
 %{__make} -f Makefile.gcc \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -Wall" \
-#	OBJS="pngcrush.o" \
-#	LDFLAGS="%{rpmldflags} -lpng -lz"
+%if 0%{?_with_systemlibs}
+	OBJS="pngcrush.o" \
+	LDFLAGS="%{rpmldflags} -lpng -lz"
+%endif
 
 # create some real documentation
 head -n 24 pngcrush.c | cut -b 4- > README
