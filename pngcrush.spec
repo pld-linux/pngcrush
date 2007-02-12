@@ -22,8 +22,8 @@
 #
 #    profile_length = data_length - prefix_length;
 Summary:	Optimizer for png files
-Summary(pl):	Optymalizator plikÛw png
-Summary(pt_BR):	Utilit·rio para compress„o de pngs
+Summary(pl.UTF-8):   Optymalizator plik√≥w png
+Summary(pt_BR.UTF-8):   Utilit√°rio para compress√£o de pngs
 Name:		pngcrush
 Version:	1.6.2
 Release:	2
@@ -45,15 +45,15 @@ filter_method none, and libpng adaptive filtering, with compression
 levels 3 and 9). It does the most time-consuming method last in case
 it turns out to be the best.
 
-%description -l pl
+%description -l pl.UTF-8
 Ten program wczytuje obrazek PNG i zapisuje go ponownie z optymalnymi
-parametrami filter_method i zlib_level. Uøywa metody brute force
-(prÛbuje filter_method none oraz adaptacyjnego filtrowania libpng ze
+parametrami filter_method i zlib_level. U≈ºywa metody brute force
+(pr√≥buje filter_method none oraz adaptacyjnego filtrowania libpng ze
 stopniami kompresji 3 i 9).
 
-%description -l pt_BR
-O pngcrush È um otimizador para arquivos PNG (Portable Network
-Graphics). Ele pode comprimir os arquivos em atÈ 40%, sem perdas.
+%description -l pt_BR.UTF-8
+O pngcrush √© um otimizador para arquivos PNG (Portable Network
+Graphics). Ele pode comprimir os arquivos em at√© 40%, sem perdas.
 
 %prep
 %setup -q
