@@ -22,8 +22,8 @@
 #
 #    profile_length = data_length - prefix_length;
 Summary:	Optimizer for png files
-Summary(pl.UTF-8):   Optymalizator plików png
-Summary(pt_BR.UTF-8):   Utilitário para compressão de pngs
+Summary(pl.UTF-8):	Optymalizator plików png
+Summary(pt_BR.UTF-8):	Utilitário para compressão de pngs
 Name:		pngcrush
 Version:	1.6.2
 Release:	2
