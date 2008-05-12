@@ -25,12 +25,12 @@ Summary:	Optimizer for png files
 Summary(pl.UTF-8):	Optymalizator plików png
 Summary(pt_BR.UTF-8):	Utilitário para compressão de pngs
 Name:		pngcrush
-Version:	1.6.2
-Release:	2
-License:	BSD-like (see README.txt)
+Version:	1.6.5
+Release:	1
+License:	BSD-like (see LICENSE)
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.bz2
-# Source0-md5:	ca036dc08ffe1f47b43f6d19d93a1af4
+# Source0-md5:	0970ec8b12990cf8b173ff1030b3ac85
 URL:		http://pmt.sf.net/pngcrush/
 %if %{with systemlibs}
 BuildRequires:	libpng-devel
@@ -61,7 +61,8 @@ Graphics). Ele pode comprimir os arquivos em até 40%, sem perdas.
 # create some real documentation
 # NOTE: remember to check these on upgrade!
 sed -ne '1,/*\//p' pngcrush.c | cut -b 4- > README
-sed -ne '/\/* To do/,/*\/$/p;/PNG_INTERNAL/q' pngcrush.c | cut -b 4- > TODO
+sed -ne '/\/\* To do/,/*\/$/p;/PNG_INTERNAL/q' pngcrush.c | cut -b 4- > TODO
+sed -ne '/* COPYRIGHT/,/*\/$/p;' pngcrush.c | cut -b 4- > LICENSE
 
 %if %{with systemlibs}
 # workaround for Makefile and #include "png.h"
@@ -72,6 +73,7 @@ echo '#include <png.h>' > png.h
 %{__make} \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -Wall" \
+	LD="%{__cc} %{rpmldflags}" \
 %if %{with systemlibs}
 	OBJS="pngcrush.o" \
 	LDFLAGS="%{rpmldflags} -lpng -lz"
@@ -88,5 +90,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README TODO ChangeLog.txt
+%doc LICENSE README TODO ChangeLog.txt
 %attr(755,root,root) %{_bindir}/pngcrush
