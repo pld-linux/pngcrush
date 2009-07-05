@@ -25,12 +25,12 @@ Summary:	Optimizer for png files
 Summary(pl.UTF-8):	Optymalizator plików png
 Summary(pt_BR.UTF-8):	Utilitário para compressão de pngs
 Name:		pngcrush
-Version:	1.6.5
+Version:	1.6.19
 Release:	1
 License:	BSD-like (see LICENSE)
 Group:		Applications/Graphics
 Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.bz2
-# Source0-md5:	0970ec8b12990cf8b173ff1030b3ac85
+# Source0-md5:	2cfe54e660e586a0302a6def1aa8b08e
 URL:		http://pmt.sf.net/pngcrush/
 %if %{with systemlibs}
 BuildRequires:	libpng-devel
@@ -90,5 +90,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc LICENSE README TODO ChangeLog.txt
+%doc LICENSE README TODO ChangeLog.html
 %attr(755,root,root) %{_bindir}/pngcrush
