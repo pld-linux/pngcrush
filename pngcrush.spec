@@ -3,6 +3,7 @@
 %bcond_with	systemlibs	# use system libraries instead of modified ones
 #				  (modified can give little better results)
 # NOTE:
+# - to use system libs, read desc from homepage: http://pmt.sourceforge.net/pngcrush/
 # - bundled zlib-1.2.3 differs from zlib-1.2.3 that it defines TOO_FAR
 #   32767 instead of 4096
 # - libpng diffs (this is bad?):
@@ -25,13 +26,15 @@ Summary:	Optimizer for png files
 Summary(pl.UTF-8):	Optymalizator plików png
 Summary(pt_BR.UTF-8):	Utilitário para compressão de pngs
 Name:		pngcrush
-Version:	1.6.19
+Version:	1.7.13
 Release:	1
 License:	BSD-like (see LICENSE)
 Group:		Applications/Graphics
-Source0:	http://dl.sourceforge.net/pmt/%{name}-%{version}.tar.bz2
-# Source0-md5:	2cfe54e660e586a0302a6def1aa8b08e
+Source0:	http://downloads.sourceforge.net/pmt/%{name}-%{version}.tar.xz
+# Source0-md5:	e69a5323bee41bf731ab34f81b26daf2
 URL:		http://pmt.sf.net/pngcrush/
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 %if %{with systemlibs}
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
