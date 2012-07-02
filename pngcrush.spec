@@ -22,17 +22,18 @@
 #-               0x00, prefix_length);
 #
 #    profile_length = data_length - prefix_length;
+#
 Summary:	Optimizer for png files
 Summary(pl.UTF-8):	Optymalizator plików png
 Summary(pt_BR.UTF-8):	Utilitário para compressão de pngs
 Name:		pngcrush
-Version:	1.7.13
+Version:	1.7.30
 Release:	1
 License:	BSD-like (see LICENSE)
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/pmt/%{name}-%{version}.tar.xz
-# Source0-md5:	e69a5323bee41bf731ab34f81b26daf2
-URL:		http://pmt.sf.net/pngcrush/
+# Source0-md5:	b118494446cc19b689f69017f2fc8005
+URL:		http://pmt.sourceforge.net/pngcrush/
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %if %{with systemlibs}
@@ -75,7 +76,7 @@ echo '#include <png.h>' > png.h
 %build
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -Wall" \
+	CFLAGS="%{rpmcflags} -Wall -I. -DZ_SOLO" \
 	LD="%{__cc} %{rpmldflags}" \
 %if %{with systemlibs}
 	OBJS="pngcrush.o" \
