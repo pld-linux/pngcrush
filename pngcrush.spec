@@ -27,12 +27,12 @@ Summary:	Optimizer for png files
 Summary(pl.UTF-8):	Optymalizator plików png
 Summary(pt_BR.UTF-8):	Utilitário para compressão de pngs
 Name:		pngcrush
-Version:	1.7.83
+Version:	1.7.92
 Release:	1
 License:	BSD-like (see LICENSE)
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/pmt/%{name}-%{version}.tar.xz
-# Source0-md5:	0797038c1199b69db6f0d366c032efe9
+# Source0-md5:	08a0b39e26962af7028dcb978d26a9ee
 URL:		http://pmt.sourceforge.net/pngcrush/
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
