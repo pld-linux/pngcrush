@@ -27,17 +27,19 @@ Summary:	Optimizer for png files
 Summary(pl.UTF-8):	Optymalizator plików png
 Summary(pt_BR.UTF-8):	Utilitário para compressão de pngs
 Name:		pngcrush
-Version:	1.7.92
+Version:	1.8.13
 Release:	1
 License:	BSD-like (see LICENSE)
 Group:		Applications/Graphics
 Source0:	http://downloads.sourceforge.net/pmt/%{name}-%{version}.tar.xz
-# Source0-md5:	08a0b39e26962af7028dcb978d26a9ee
+# Source0-md5:	2eeb072fcb56dcc4f7ccc35bd4238bd3
+Patch0:		%{name}-ptrdiff.patch
 URL:		http://pmt.sourceforge.net/pngcrush/
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 %if %{with systemlibs}
 BuildRequires:	libpng-devel
+BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
 %endif
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -61,6 +63,7 @@ Graphics). Ele pode comprimir os arquivos em até 40%, sem perdas.
 
 %prep
 %setup -q
+%patch0 -p1
 
 # create some real documentation
 # NOTE: remember to check these on upgrade!
@@ -68,19 +71,18 @@ sed -ne '1,/*\//p' pngcrush.c | cut -b 4- > README
 sed -ne '/\/\* To do/,/*\/$/p;/PNG_INTERNAL/q' pngcrush.c | cut -b 4- > TODO
 sed -ne '/* COPYRIGHT/,/*\/$/p;' pngcrush.c | cut -b 4- > LICENSE
 
-%if %{with systemlibs}
-# workaround for Makefile and #include "png.h"
-echo '#include <png.h>' > png.h
-%endif
-
 %build
-%{__make} \
+%{__make} %{?with_systemlibs:-f Makefile-nolib} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -Wall -I. -DZ_SOLO" \
-	LD="%{__cc} %{rpmldflags}" \
+	CFLAGS="%{rpmcflags} -std=c90 -Wall" \
+	OPTIONS="%{rpmcppflags}" \
+	LD="%{__cc}" \
+	LDFLAGS="%{rpmldflags}" \
 %if %{with systemlibs}
-	OBJS="pngcrush.o" \
-	LDFLAGS="%{rpmldflags} -lpng -lz"
+	PNGINC=$(pkg-config --variable=includedir libpng) \
+	PNGLIB=%{_libdir} \
+	ZINC=%{_includedir} \
+	ZLIB=%{_libdir}
 %endif
 
 %install

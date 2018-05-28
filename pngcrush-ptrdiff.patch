@@ -1,0 +1,13 @@
+--- pngcrush-1.8.13/zutil.h.orig	2018-05-28 19:28:29.732393494 +0200
++++ pngcrush-1.8.13/zutil.h	2018-05-28 19:30:17.195725592 +0200
+@@ -29,10 +29,6 @@
+ #  include <stdlib.h>
+ #endif
+ 
+-#ifdef Z_SOLO
+-   typedef long ptrdiff_t;  /* guess -- will be caught if guess is wrong */
+-#endif
+-
+ #ifndef local
+ #  define local static
+ #endif
